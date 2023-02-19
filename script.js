@@ -8,6 +8,7 @@ const meaningContainer = document.getElementById("meaning-container");
 const titleElement = document.getElementById("title");
 const meaningElement = document.getElementById("meaning");
 const audioElement = document.getElementById("audio");
+
 async function fetchAPI(word) {
   try {
     inputTextElement.style.display = "block";
@@ -26,21 +27,13 @@ async function fetchAPI(word) {
     //audio
     console.log(data[0].phonetics[0].audio);
     if (data[0].word) {
-      console.log("ddd");
       inputTextElement.style.display = "none";
       meaningContainer.style.display = "block";
       titleElement.innerText = data[0].word;
       meaningElement.innerText = `${data[0].meanings[0].definitions[0].definition}`;
       audioElement.src = data[0].phonetics[0].audio;
-    } else {
-      console.log("ff");
-      inputTextElement.style.display = "none";
-      meaningContainer.style.display = "block";
-      titleElement.innerText = word;
-      meaningElement.innerText = `please enter correct word `;
     }
   } catch (error) {
-    console.log("error");
     inputTextElement.innerText = `please enter correct word `;
   }
 }
